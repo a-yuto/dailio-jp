@@ -40,11 +40,11 @@ Daylio対抗の超シンプル気分×睡眠トラッカー（iOS）。記録項
 ```bash
 # ビルド（iPhone 15 シミュレータ）
 xcodebuild -project dailio-jp.xcodeproj -scheme dailio-jp \
-  -destination 'platform=iOS Simulator,name=iPhone 15' build
+  -destination 'platform=iOS Simulator,name=iPhone 17' build
 
 # ユニットテスト
 xcodebuild -project dailio-jp.xcodeproj -scheme dailio-jp \
-  -destination 'platform=iOS Simulator,name=iPhone 15' test
+  -destination 'platform=iOS Simulator,name=iPhone 17' test
 ```
 
 ファイル追加は Xcode の同期グループ機能により自動認識される。`project.pbxproj` の編集は基本的に不要。
