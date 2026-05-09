@@ -4,12 +4,17 @@ import SwiftData
 /// 1 日 1 回の記録画面。気分スライダー + 睡眠時間 + ストリーク。
 struct EntryView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.sleepProvider) private var sleepProvider
     @Query(sort: \MoodEntry.date, order: .reverse) private var allEntries: [MoodEntry]
 
     @State private var mood: Double = 5
     @State private var sleepHours: Double? = 7.0
     @State private var sleepSource: SleepSource = .manual
     @State private var saveConfirmation: ConfirmationState = .idle
+
+    /// HealthKit prefill 直後の値。これと sleepHours が一致する間は source = .healthKit。
+    /// ユーザーが Stepper を動かして値が変わったら source を .manual に切り替える。
+    @State private var lastAutoSleepHours: Double? = nil
 
     private var streak: Int {
         StreakCalculator().currentStreak(entries: allEntries)
@@ -59,7 +64,15 @@ struct EntryView: View {
                 .padding()
             }
             .navigationTitle("dailio")
-            .onAppear(perform: loadTodayIfExists)
+            .task {
+                loadTodayIfExists()
+                await prefillFromHealthKit()
+            }
+            .onChange(of: sleepHours) { _, newValue in
+                if newValue != lastAutoSleepHours {
+                    sleepSource = .manual
+                }
+            }
         }
     }
 
@@ -73,6 +86,27 @@ struct EntryView: View {
         mood = today.mood
         sleepHours = today.sleepHours
         sleepSource = today.sleepSource
+        lastAutoSleepHours = today.sleepSource == .healthKit ? today.sleepHours : nil
+    }
+
+    private func prefillFromHealthKit() async {
+        // 既に手動入力で値が入っていれば上書きしない
+        if let existing = allEntries.first(where: { Calendar.current.isDateInToday($0.date) }),
+           existing.sleepSource == .manual {
+            return
+        }
+        do {
+            try await sleepProvider.requestAuthorization()
+            guard let hours = try await sleepProvider.previousNightSleepHours(for: .now) else {
+                return
+            }
+            let rounded = (hours * 2).rounded() / 2  // 0.5 時間刻み
+            lastAutoSleepHours = rounded
+            sleepHours = rounded
+            sleepSource = .healthKit
+        } catch {
+            // 権限拒否や取得不可は黙ってフォールバック（手動入力のまま）
+        }
     }
 
     private func save() {

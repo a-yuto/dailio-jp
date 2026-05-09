@@ -15,9 +15,12 @@ struct dailio_jpApp: App {
         }
     }()
 
+    private let sleepProvider: any SleepProvider = HealthKitSleepProvider()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.sleepProvider, sleepProvider)
         }
         .modelContainer(sharedModelContainer)
     }

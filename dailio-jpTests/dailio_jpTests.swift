@@ -96,3 +96,56 @@ struct StreakCalculatorTests {
         #expect(result == 2)
     }
 }
+
+@MainActor
+struct SleepAggregatorTests {
+
+    private let calendar = Calendar(identifier: .gregorian)
+
+    private func date(_ y: Int, _ m: Int, _ d: Int, _ h: Int, _ min: Int = 0) -> Date {
+        calendar.date(from: DateComponents(year: y, month: m, day: d, hour: h, minute: min))!
+    }
+
+    @Test func returnsZeroForNoSegments() {
+        let range = date(2026, 5, 7, 18)..<date(2026, 5, 8, 12)
+        #expect(SleepAggregator().totalSleepHours(segments: [], in: range) == 0)
+    }
+
+    @Test func excludesAwakeAndInBedStages() {
+        let range = date(2026, 5, 7, 18)..<date(2026, 5, 8, 12)
+        let segments = [
+            SleepSegment(start: date(2026, 5, 7, 23), end: date(2026, 5, 8, 0), stage: .inBed),
+            SleepSegment(start: date(2026, 5, 8, 3), end: date(2026, 5, 8, 4), stage: .awake)
+        ]
+        #expect(SleepAggregator().totalSleepHours(segments: segments, in: range) == 0)
+    }
+
+    @Test func sumsAsleepStages() {
+        let range = date(2026, 5, 7, 18)..<date(2026, 5, 8, 12)
+        // 23:00-01:00 core (2h) + 01:00-02:00 deep (1h) + 02:00-03:00 REM (1h) = 4h
+        let segments = [
+            SleepSegment(start: date(2026, 5, 7, 23), end: date(2026, 5, 8, 1), stage: .asleepCore),
+            SleepSegment(start: date(2026, 5, 8, 1), end: date(2026, 5, 8, 2), stage: .asleepDeep),
+            SleepSegment(start: date(2026, 5, 8, 2), end: date(2026, 5, 8, 3), stage: .asleepREM)
+        ]
+        #expect(SleepAggregator().totalSleepHours(segments: segments, in: range) == 4.0)
+    }
+
+    @Test func clipsSegmentsToRange() {
+        // 範囲は 18:00 〜 翌12:00。前夜 17:00-19:00 のうち 1h だけが範囲内。
+        let range = date(2026, 5, 7, 18)..<date(2026, 5, 8, 12)
+        let segments = [
+            SleepSegment(start: date(2026, 5, 7, 17), end: date(2026, 5, 7, 19), stage: .asleepCore)
+        ]
+        #expect(SleepAggregator().totalSleepHours(segments: segments, in: range) == 1.0)
+    }
+
+    @Test func includesAsleepUnspecifiedForLegacyDevices() {
+        let range = date(2026, 5, 7, 18)..<date(2026, 5, 8, 12)
+        // 23:00-06:00 = 7h
+        let segments = [
+            SleepSegment(start: date(2026, 5, 7, 23), end: date(2026, 5, 8, 6), stage: .asleepUnspecified)
+        ]
+        #expect(SleepAggregator().totalSleepHours(segments: segments, in: range) == 7.0)
+    }
+}
