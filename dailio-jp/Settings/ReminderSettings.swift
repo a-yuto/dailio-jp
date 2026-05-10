@@ -13,3 +13,8 @@ enum ReminderSettingsDefaults {
     static let hour = 22
     static let minute = 0
 }
+
+/// アプリロック設定の AppStorage キー。
+enum LockSettingsKey {
+    static let isEnabled = "lock.isEnabled"
+}

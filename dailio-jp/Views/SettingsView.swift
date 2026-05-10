@@ -14,10 +14,14 @@ struct SettingsView: View {
     @AppStorage(ReminderSettingsKey.minute)
     private var reminderMinute: Int = ReminderSettingsDefaults.minute
 
+    @AppStorage(LockSettingsKey.isEnabled)
+    private var isLockEnabled: Bool = false
+
     @State private var authorizationStatus: UNAuthorizationStatus = .notDetermined
     @State private var isPaywallPresented: Bool = false
 
     private let scheduler = NotificationScheduler()
+    private let auth = AuthService()
 
     private var reminderTime: Binding<Date> {
         Binding(
@@ -66,6 +70,36 @@ struct SettingsView: View {
                     Text("通知")
                 } footer: {
                     Text("毎日の同じ時刻に記録を促す通知を送ります")
+                }
+
+                Section {
+                    Toggle(isOn: $isLockEnabled) {
+                        Label("アプリロック", systemImage: "lock.fill")
+                    }
+                    .disabled(!auth.isAvailable())
+
+                    if !auth.isAvailable() {
+                        Text("この端末では Face ID / Touch ID / パスコードが設定されていません")
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                    }
+                } header: {
+                    Text("プライバシー")
+                } footer: {
+                    if auth.isAvailable() {
+                        Text("起動時とバックグラウンド復帰時に \(auth.biometryName()) で認証を求めます")
+                    }
+                }
+
+                Section {
+                    LabeledContent("iCloud 同期") {
+                        Image(systemName: "checkmark.icloud.fill")
+                            .foregroundStyle(.blue)
+                    }
+                } header: {
+                    Text("データ")
+                } footer: {
+                    Text("記録は iCloud のあなた専用コンテナに同期されます。同期を停止するには iOS 設定 > Apple ID > iCloud から dailio をオフにしてください")
                 }
 
                 Section("このアプリについて") {

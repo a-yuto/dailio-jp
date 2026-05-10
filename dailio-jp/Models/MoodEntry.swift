@@ -4,14 +4,15 @@ import SwiftData
 @Model
 final class MoodEntry {
     /// 論理日の正午（タイムゾーン依存しない安定キー）
-    var date: Date
+    /// 既定値は CloudKit 互換のため必須。
+    var date: Date = Date.now
     /// 0〜10、連続値
-    var mood: Double
+    var mood: Double = 5.0
     /// 前夜の睡眠時間（時間単位）
     var sleepHours: Double?
-    var sleepSource: SleepSource
-    var createdAt: Date
-    var updatedAt: Date
+    var sleepSource: SleepSource = SleepSource.manual
+    var createdAt: Date = Date.now
+    var updatedAt: Date = Date.now
 
     init(
         date: Date,
