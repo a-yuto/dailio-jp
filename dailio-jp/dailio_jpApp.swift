@@ -26,32 +26,39 @@ struct dailio_jpApp: App {
     @State private var lockController = LockController()
 
     @AppStorage(LockSettingsKey.isEnabled) private var isLockEnabled: Bool = false
+    @AppStorage(OnboardingKey.isCompleted) private var isOnboardingCompleted: Bool = false
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.sleepProvider, sleepProvider)
-                .environment(entitlementStore)
-                .environment(lockController)
-                .overlay {
-                    if isLockEnabled, lockController.isLocked {
-                        LockedView(lock: lockController)
-                    }
+            Group {
+                if isOnboardingCompleted {
+                    ContentView()
+                        .environment(\.sleepProvider, sleepProvider)
+                        .environment(entitlementStore)
+                        .environment(lockController)
+                        .overlay {
+                            if isLockEnabled, lockController.isLocked {
+                                LockedView(lock: lockController)
+                            }
+                        }
+                } else {
+                    OnboardingView()
+                        .environment(\.sleepProvider, sleepProvider)
                 }
-                .task {
-                    await entitlementStore.refresh()
-                    lockController.setLockEnabled(isLockEnabled)
+            }
+            .task {
+                await entitlementStore.refresh()
+                lockController.setLockEnabled(isLockEnabled)
+            }
+            .onChange(of: isLockEnabled) { _, newValue in
+                lockController.setLockEnabled(newValue)
+            }
+            .onChange(of: scenePhase) { oldPhase, newPhase in
+                if newPhase == .active, oldPhase != .active {
+                    lockController.relockIfEnabled(isLockEnabled)
                 }
-                .onChange(of: isLockEnabled) { _, newValue in
-                    lockController.setLockEnabled(newValue)
-                }
-                .onChange(of: scenePhase) { oldPhase, newPhase in
-                    // バックグラウンド or インアクティブから active 遷移時に再ロック
-                    if newPhase == .active, oldPhase != .active {
-                        lockController.relockIfEnabled(isLockEnabled)
-                    }
-                }
+            }
         }
         .modelContainer(sharedModelContainer)
     }
