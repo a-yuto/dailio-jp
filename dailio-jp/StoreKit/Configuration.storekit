@@ -28,7 +28,7 @@
           "locale" : "en_US"
         }
       ],
-      "productID" : "niki.dailio-jp.pro.lifetime",
+      "productID" : "niki.kibun-log.pro.lifetime",
       "referenceName" : "Pro Lifetime",
       "type" : "NonConsumable"
     }
@@ -74,7 +74,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "niki.dailio-jp.pro.monthly",
+          "productID" : "niki.kibun-log.pro.monthly",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Pro Monthly",
           "subscriptionGroupID" : "21539831",
@@ -100,7 +100,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "niki.dailio-jp.pro.yearly",
+          "productID" : "niki.kibun-log.pro.yearly",
           "recurringSubscriptionPeriod" : "P1Y",
           "referenceName" : "Pro Yearly",
           "subscriptionGroupID" : "21539831",

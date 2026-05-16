@@ -32,9 +32,9 @@ dailio (the "App") is a tool for recording mood and sleep data. Because this is 
 
 ## クラウド同期 / Cloud Sync
 
-記録は Apple の iCloud（あなた専用の Container `iCloud.niki.dailio-jp`）に同期されます。Apple のプライバシーポリシーに従い、Apple や本アプリ開発者を含む第三者は内容を閲覧できません。同期を停止するには iOS 設定 > Apple ID > iCloud から dailio をオフにしてください。
+記録は Apple の iCloud（あなた専用の Container `iCloud.niki.kibun-log`）に同期されます。Apple のプライバシーポリシーに従い、Apple や本アプリ開発者を含む第三者は内容を閲覧できません。同期を停止するには iOS 設定 > Apple ID > iCloud から dailio をオフにしてください。
 
-Records sync to your private iCloud container (`iCloud.niki.dailio-jp`). Per Apple's privacy policy, no one—including Apple or the developer—can read the contents. To stop syncing, disable dailio in iOS Settings > Apple ID > iCloud.
+Records sync to your private iCloud container (`iCloud.niki.kibun-log`). Per Apple's privacy policy, no one—including Apple or the developer—can read the contents. To stop syncing, disable dailio in iOS Settings > Apple ID > iCloud.
 
 ## HealthKit
 

@@ -25,7 +25,7 @@ Daylio対抗の超シンプル気分×睡眠トラッカー（iOS）。記録項
 
 ### ビルド設定（`project.pbxproj` より）
 
-- Bundle ID: `niki.dailio-jp`
+- Bundle ID: `niki.kibun-log`
 - Deployment Target: **iOS 26.4**（最新 API 前提で進める。issue 記載の「iOS 17+」より引き上げ確定）
 - Swift 5.0 / `SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor`（既定で MainActor 隔離）
 - `SWIFT_APPROACHABLE_CONCURRENCY = YES`
@@ -109,9 +109,9 @@ xcodebuild -project dailio-jp.xcodeproj -scheme dailio-jp \
 
 | プラン | 価格 | プロダクト ID（仮） |
 |---|---|---|
-| Pro 月額 | ¥200/月 | `niki.dailio-jp.pro.monthly` |
-| Pro 年額 | ¥1,980/年 | `niki.dailio-jp.pro.yearly` |
-| Lifetime | ¥4,980（買い切り） | `niki.dailio-jp.pro.lifetime` |
+| Pro 月額 | ¥200/月 | `niki.kibun-log.pro.monthly` |
+| Pro 年額 | ¥1,980/年 | `niki.kibun-log.pro.yearly` |
+| Lifetime | ¥4,980（買い切り） | `niki.kibun-log.pro.lifetime` |
 
 - StoreKit 2 のトランザクション監視を `App` 起動直後に開始
 - Pro 機能ゲート: 移動平均期間カスタム / PDF エクスポート / Watch コンプリ / テーマ / 散布図 / AI 振り返り
