@@ -4,9 +4,9 @@
 
 ### App 名 / Title (最大 30 文字)
 ```
-dailio - 気分と睡眠の日記
+きぶんログ - 気分・睡眠・ひとこと日記
 ```
-（24 文字）
+（20 文字）
 
 ### サブタイトル / Subtitle (最大 30 文字)
 ```
@@ -27,7 +27,7 @@ dailio - 気分と睡眠の日記
 
 ### 説明文 / Description (最大 4,000 文字)
 ```
-🌱 dailio は「2 項目だけ」のメンタルトラッカーです。
+🌱 きぶんログ は「2 項目だけ」のメンタルトラッカーです。
 
 気分は 0〜10 のスライダー、睡眠は HealthKit から自動取込。
 1 日 30 秒で続けられる、超シンプル設計。
@@ -47,6 +47,7 @@ dailio - 気分と睡眠の日記
 ━━━━━━━━━━━━━━━━━━━
 ✔ 気分スライダー（0〜10、赤→緑のグラデーション）
 ✔ HealthKit 連携で前夜の睡眠を自動取込
+✔ 一日一言の「ひとこと日記」（任意・100 文字）
 ✔ 気分と睡眠のダブル折れ線グラフ
 ✔ 7 日移動平均で「全体の気分の流れ」を可視化
 ✔ 期間切替（1 週 / 1 ヶ月 / 3 ヶ月 / 1 年）
@@ -111,7 +112,7 @@ https://a-yuto.github.io/dailio-jp/PRIVACY.html
 
 ### Title (max 30 chars)
 ```
-dailio - Mood & Sleep Tracker
+Kibun Log - Mood & Sleep Tracker
 ```
 
 ### Subtitle (max 30 chars)
@@ -131,11 +132,11 @@ Two-item mood and sleep tracker. Auto-import last night's sleep from HealthKit. 
 
 ### Description
 ```
-🌱 dailio is the simplest mood tracker possible — just two items.
+🌱 Kibun Log is the simplest mood tracker possible — just two items.
 
 A 0–10 mood slider and last night's sleep (auto-imported from HealthKit). 30 seconds a day, every day.
 
-Most journaling apps fail because they ask too much. dailio asks for the minimum so you actually keep going.
+Most journaling apps fail because they ask too much. Kibun Log asks for the minimum so you actually keep going.
 
 ━━━━━━━━━━━━━━━━━━━
 ■ Who it's for
@@ -150,6 +151,7 @@ Most journaling apps fail because they ask too much. dailio asks for the minimum
 ━━━━━━━━━━━━━━━━━━━
 ✔ Mood slider (0–10, red→green gradient)
 ✔ Sleep auto-imported from HealthKit
+✔ One-line daily note (optional, 100 chars)
 ✔ Mood × Sleep dual line chart
 ✔ 7-day moving average
 ✔ Period switch (1W / 1M / 3M / 1Y)
