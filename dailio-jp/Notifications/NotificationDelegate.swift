@@ -11,7 +11,7 @@ final class NotificationDelegate: NSObject, UIApplicationDelegate, UNUserNotific
     }
 
     /// 通知タップ時に送出する Notification.Name。
-    static let openDestinationNotification = Notification.Name("dailio.openDestination")
+    static let openDestinationNotification = Notification.Name("kibunlog.openDestination")
 
     func application(
         _ application: UIApplication,

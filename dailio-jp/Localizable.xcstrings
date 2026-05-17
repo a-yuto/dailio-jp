@@ -151,26 +151,33 @@
         }
       }
     },
-    "dailio" : {
+    "きぶんログ" : {
       "comment" : "The title of the main app.",
-      "shouldTranslate" : false
-    },
-    "dailio へようこそ" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Welcome to dailio"
+            "value" : "Kibun Log"
           }
         }
       }
     },
-    "dailio を開く" : {
+    "きぶんログ へようこそ" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open dailio"
+            "value" : "Welcome to Kibun Log"
+          }
+        }
+      }
+    },
+    "きぶんログ を開く" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Kibun Log"
           }
         }
       }
@@ -379,12 +386,12 @@
         }
       }
     },
-    "ロックを解除して dailio を使う" : {
+    "ロックを解除して きぶんログ を使う" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unlock to continue using dailio"
+            "value" : "Unlock to continue using Kibun Log"
           }
         }
       }
@@ -820,12 +827,12 @@
         }
       }
     },
-    "記録は iCloud のあなた専用コンテナに同期されます。同期を停止するには iOS 設定 > Apple ID > iCloud から dailio をオフにしてください" : {
+    "記録は iCloud のあなた専用コンテナに同期されます。同期を停止するには iOS 設定 > Apple ID > iCloud から きぶんログ をオフにしてください" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entries sync to your private iCloud container. To stop syncing, turn off dailio in iOS Settings > Apple ID > iCloud."
+            "value" : "Entries sync to your private iCloud container. To stop syncing, turn off Kibun Log in iOS Settings > Apple ID > iCloud."
           }
         }
       }

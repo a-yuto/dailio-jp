@@ -102,7 +102,7 @@ struct SettingsView: View {
                 } header: {
                     Text("データ")
                 } footer: {
-                    Text("記録は iCloud のあなた専用コンテナに同期されます。同期を停止するには iOS 設定 > Apple ID > iCloud から dailio をオフにしてください")
+                    Text("記録は iCloud のあなた専用コンテナに同期されます。同期を停止するには iOS 設定 > Apple ID > iCloud から きぶんログ をオフにしてください")
                 }
 
                 Section("このアプリについて") {

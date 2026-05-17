@@ -70,7 +70,7 @@ struct EntryView: View {
                 }
                 .padding()
             }
-            .navigationTitle("dailio")
+            .navigationTitle("きぶんログ")
             .task {
                 loadTodayIfExists()
                 await prefillFromHealthKit()

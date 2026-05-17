@@ -15,7 +15,7 @@ struct WelcomeStep: View {
                 .foregroundStyle(.tint)
 
             VStack(spacing: 8) {
-                Text("dailio へようこそ")
+                Text("きぶんログ へようこそ")
                     .font(.largeTitle.bold())
                 Text("気分と睡眠だけ。30 秒で続けられる")
                     .font(.title3)
@@ -292,7 +292,7 @@ struct CompleteStep: View {
             Spacer()
 
             Button(action: onFinish) {
-                Text("dailio を開く")
+                Text("きぶんログ を開く")
                     .font(.headline)
                     .frame(maxWidth: .infinity)
             }

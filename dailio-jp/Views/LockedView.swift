@@ -17,7 +17,7 @@ struct LockedView: View {
                 Text("ロック中")
                     .font(.title2.bold())
 
-                Text("ロックを解除して dailio を使う")
+                Text("ロックを解除して きぶんログ を使う")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
 

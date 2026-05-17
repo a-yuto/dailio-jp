@@ -3,7 +3,7 @@ import UserNotifications
 
 /// 毎日 1 回のリマインダー通知を管理する。MainActor 既定（CLAUDE.md の Concurrency 規約）。
 struct NotificationScheduler {
-    static let dailyReminderID = "dailio.daily-reminder"
+    static let dailyReminderID = "kibunlog.daily-reminder"
 
     private let center: UNUserNotificationCenter
 
