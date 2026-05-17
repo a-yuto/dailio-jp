@@ -29,6 +29,12 @@ struct dailio_jpApp: App {
     @AppStorage(OnboardingKey.isCompleted) private var isOnboardingCompleted: Bool = false
     @Environment(\.scenePhase) private var scenePhase
 
+    init() {
+        #if DEBUG
+        ScreenshotLaunch.configure(container: sharedModelContainer)
+        #endif
+    }
+
     var body: some Scene {
         WindowGroup {
             Group {

@@ -9,6 +9,14 @@ struct HistoryView: View {
     @State private var period: ChartPeriod = .month
     @State private var showMovingAverage: Bool = true
 
+    init() {
+        #if DEBUG
+        if let ma = ScreenshotLaunch.movingAverageOverride {
+            _showMovingAverage = State(initialValue: ma)
+        }
+        #endif
+    }
+
     private var filteredEntries: [MoodEntry] {
         let calendar = Calendar.current
         let cutoff = calendar.date(byAdding: .day, value: -period.dayCount, to: .now) ?? .now

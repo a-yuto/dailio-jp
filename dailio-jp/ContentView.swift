@@ -4,6 +4,14 @@ import SwiftData
 struct ContentView: View {
     @State private var selectedTab: Tab = .entry
 
+    init() {
+        #if DEBUG
+        if let tab = ScreenshotLaunch.initialTab {
+            _selectedTab = State(initialValue: tab)
+        }
+        #endif
+    }
+
     var body: some View {
         TabView(selection: $selectedTab) {
             EntryView()

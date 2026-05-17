@@ -1,0 +1,6 @@
+# App Store スクリーンショット（自動生成・App Store Connect へ手動アップロード）
+screenshots/
+
+# テスト/ビルド成果物
+*.xcresult
+.DS_Store
